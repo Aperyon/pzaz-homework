@@ -6,7 +6,13 @@ const store = useStore()
 const router = useRouter()
 
 function onSubmit(values) {
-  store.dispatch('addBook', values)
+  const payload = new FormData()
+  payload.append('title', values.title)
+  payload.append('description', values.description)
+  if (values.cover_image[0]) {
+    payload.append('cover_image', values?.cover_image[0]?.file || null)
+  }
+  store.dispatch('addBook', payload)
   router.push('/books')
 }
 </script>

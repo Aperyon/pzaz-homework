@@ -19,9 +19,5 @@ export function deleteBook(id: string) {
 
 export function addBook(values: Partial<Book>) {
   const url = '/api/books/'
-  const payload = new FormData()
-  payload.append('title', values.title)
-  payload.append('description', values.description)
-  payload.append('cover_image', values.cover_image[0].file)
-  return axiosInstance.post(url, payload, { headers: { 'Content-Type': 'multipart/form-data' } })
+  return axiosInstance.post(url, values, { headers: { 'Content-Type': 'multipart/form-data' } })
 }
